@@ -1,11 +1,19 @@
 library(readxl)
 library(dplyr)
 HW3 <- read_excel("tarea3TEFI/HW3.xlsx")
-
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+#pregunta A
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 # los rendimientos en exceso
 HW3_exceso <- HW3 %>%
   mutate(across(3:27, ~ .x - RF))
-
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+#pregunta B
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 # lsta de nombres de portafolios
 portafolios <- colnames(HW3)[3:27]
 
@@ -48,8 +56,11 @@ resultados_df <- resultados_df %>%
     `Estadístico Beta` = as.numeric(`Estadístico Beta`),
     R2 = as.numeric(R2)
   )
-
-#la d ahora, se deben calcular los promedios de los excesos de cada portafolio
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+#D ahora, se deben calcular los promedios de los excesos de cada portafolio
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
 medias<-rep(1,25)
 for (i in seq_along(portafolios)) {
   port <- portafolios[i]
@@ -68,7 +79,9 @@ corte_tranversal<-lm(Promedios~Betas,data = cross_sectional)
 resumen=summary(corte_tranversal)
 resumen$r.squared
 #R2 del 5% habra algo malo? no esta bien
-#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+#extra para reportar en el informe, no agrega informacion 
 # Instalar y cargar los paquetes necesarios
 install.packages("officer")
 install.packages("flextable")
