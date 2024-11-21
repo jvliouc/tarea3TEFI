@@ -31,7 +31,7 @@ for (i in seq_along(portafolios)) {
   )
 }
 
-# pasar a df y poniendo nombre a las weas de arriba ñau siguiendo el orden de arriba
+# pasar a df y poniendo nombre a las variables 
 resultados_df <- as.data.frame(resultados)
 colnames(resultados_df) <- c("Portafolio", "Alfa", "error estándar Alfa", "Estadístico Alfa", "Beta", "error estándar Beta", "Estadístico Beta", "R2")
 
@@ -49,7 +49,7 @@ resultados_df <- resultados_df %>%
     R2 = as.numeric(R2)
   )
 
-#la d ahora, pa hacer esta wea hay que calcular los promedios de los excesos de cada portafolio
+#la d ahora, se deben calcular los promedios de los excesos de cada portafolio
 medias<-rep(1,25)
 for (i in seq_along(portafolios)) {
   port <- portafolios[i]
@@ -67,7 +67,7 @@ cross_sectional<-data.frame(
 corte_tranversal<-lm(Promedios~Betas,data = cross_sectional)
 resumen=summary(corte_tranversal)
 resumen$r.squared
-#R2 del 5% habra algo malo?
+#R2 del 5% habra algo malo? no esta bien
 #------------------------------------------------------------------------------
 # Instalar y cargar los paquetes necesarios
 install.packages("officer")
