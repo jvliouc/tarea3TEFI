@@ -34,6 +34,10 @@ for (i in seq_along(portafolios)) {
 # pasar a df y poniendo nombre a las weas de arriba ñau siguiendo el orden de arriba
 resultados_df <- as.data.frame(resultados)
 colnames(resultados_df) <- c("Portafolio", "Alfa", "error estándar Alfa", "Estadístico Alfa", "Beta", "error estándar Beta", "Estadístico Beta", "R2")
+
+
+
+
 resultados_df <- resultados_df %>%
   mutate(
     Alfa = as.numeric(Alfa),
@@ -64,3 +68,19 @@ corte_tranversal<-lm(Promedios~Betas,data = cross_sectional)
 resumen=summary(corte_tranversal)
 resumen$r.squared
 #R2 del 5% habra algo malo?
+#------------------------------------------------------------------------------
+# Instalar y cargar los paquetes necesarios
+install.packages("officer")
+install.packages("flextable")
+library(officer)
+library(flextable)
+
+# Crear el documento de Word
+doc <- read_docx()
+
+# Agregar una tabla al documento con el dataframe 'resultados_df'
+doc <- doc %>%
+  body_add_flextable(flextable(resultados_df))
+
+# Guardar el documento en el disco
+print(doc, target = "resultados_portafolios.docx")
